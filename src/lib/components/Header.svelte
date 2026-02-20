@@ -5,6 +5,7 @@
 <script lang="ts">
     import { cn } from "$lib/utils";
     import { Clock, Hourglass, Timer, Watch } from "@lucide/svelte";
+    import type { Icon } from "@lucide/svelte";
 
     let {
         activeTab,
@@ -18,7 +19,7 @@
         onToggleFormat: () => void;
     } = $props();
 
-    const tabs: { id: TabType; label: string; icon: any }[] = [
+    const tabs: { id: TabType; label: string; icon: typeof Icon }[] = [
         { id: "timezones", label: "Timezones", icon: Clock },
         { id: "stopwatch", label: "Stopwatch", icon: Timer },
         { id: "timer", label: "Timer", icon: Hourglass },

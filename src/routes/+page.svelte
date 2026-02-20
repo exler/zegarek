@@ -1,5 +1,6 @@
 <script lang="ts">
     import Header, { type TabType } from "$lib/components/Header.svelte";
+    import Footer from "$lib/components/Footer.svelte";
     import TimezoneRow from "$lib/components/TimezoneRow.svelte";
     import TimezoneSearch from "$lib/components/TimezoneSearch.svelte";
     import Stopwatch from "$lib/components/Stopwatch.svelte";
@@ -177,4 +178,6 @@
             <Timer />
         {/if}
     </main>
+
+    <Footer />
 </div>
