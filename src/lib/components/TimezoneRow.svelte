@@ -80,36 +80,38 @@
     {ondragover}
     {ondrop}
     role="listitem"
-    class="group flex items-stretch gap-3 rounded-lg bg-card p-3 transition-colors hover:bg-secondary/50 {isDragging
-        ? 'opacity-50 z-50'
-        : ''}"
+    class={cn("group flex flex-col sm:flex-row items-stretch gap-3 rounded-lg bg-card p-3 transition-colors hover:bg-secondary/50", {
+        "opacity-50 z-50": isDragging,
+    })}
 >
-    {#if !isLocal}
+    <div class="flex flex-row gap-4">
         <button
-            class="flex shrink-0 cursor-grab items-center text-muted-foreground/40 transition-colors hover:text-muted-foreground active:cursor-grabbing"
-            aria-label="Drag to reorder"
-        >
-            <GripVertical size={14} />
-        </button>
-    {/if}
+                class={cn("flex shrink-0 cursor-grab items-center text-muted-foreground/40 transition-colors hover:text-muted-foreground active:cursor-grabbing", {
+                    "invisible pointer-events-none": isLocal,
+                })}
+                aria-label="Drag to reorder"
+            >
+                <GripVertical size={14} />
+            </button>
 
-    <div class="flex w-48 shrink-0 flex-col justify-center">
-        <div class="flex items-center gap-2">
-            <span class="text-sm font-medium text-foreground">{cityName}</span>
-            {#if isLocal}
-                <span
-                    class="rounded-full bg-primary/20 px-2 py-0.5 text-[10px] font-medium text-primary"
-                >
-                    LOCAL
-                </span>
-            {/if}
+        <div class="flex w-48 shrink-0 flex-col justify-center">
+            <div class="flex items-center gap-2">
+                <span class="text-sm font-medium text-foreground">{cityName}</span>
+                {#if isLocal}
+                    <span
+                        class="rounded-full bg-primary/20 px-2 py-0.5 text-[10px] font-medium text-primary"
+                    >
+                        LOCAL
+                    </span>
+                {/if}
+            </div>
+            <span class="text-xs text-muted-foreground">{date}</span>
+            <span
+                class="mt-0.5 font-mono text-lg font-semibold text-foreground tabular-nums"
+            >
+                {currentTime}
+            </span>
         </div>
-        <span class="text-xs text-muted-foreground">{date}</span>
-        <span
-            class="mt-0.5 font-mono text-lg font-semibold text-foreground tabular-nums"
-        >
-            {currentTime}
-        </span>
     </div>
 
     <div class="flex flex-1 flex-col gap-0.5 overflow-hidden">
@@ -154,12 +156,12 @@
         </div>
     </div>
 
-    {#if !isLocal}
-        <button
-            onclick={() => onRemove(timezone)}
-            class="flex shrink-0 items-center justify-center rounded-md px-1 text-muted-foreground opacity-0 transition-all hover:text-destructive group-hover:opacity-100"
-        >
-            <X size={14} />
-        </button>
-    {/if}
+    <button
+        onclick={() => onRemove(timezone)}
+        class={cn("flex shrink-0 items-center justify-center rounded-md px-1 text-muted-foreground opacity-0 transition-all hover:text-destructive group-hover:opacity-100", {
+            "invisible pointer-events-none": isLocal,
+        })}
+    >
+        <X size={14} />
+    </button>
 </div>
