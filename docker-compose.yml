@@ -1,5 +1,6 @@
 services:
   zegarek:
     build: .
+    container_name: zegarek
     ports:
       - "3000:80"
